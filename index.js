@@ -14,6 +14,13 @@ server.use(helmet());
 
 // endpoints here
 
+server.get('/api/zoos', (req, res) => {
+  db('zoos').then(zoos => {
+    res.status(200).json(zoos);
+  })
+  .catch(err => res.status(500).json(err))
+})
+
 server.post('/api/zoos', (req, res) => {
   const zoo = req.body;
 
